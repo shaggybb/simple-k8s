@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 5 # Specifies the number of pods to run inside template
+  selector: # Looks for pods which matches with all labels added below
+    matchLabels:
+      component: web
+  template: #QUITE SIMILAR TO PODS OBJECT TYPE  
+    metadata:
+      labels:
+        component: web
+    spec: 
+      containers:
+        - name: client
+          image: shaggybb/multi-docker-client
+          ports:
+            - containerPort: 3000
